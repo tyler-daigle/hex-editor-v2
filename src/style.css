@@ -10,6 +10,7 @@
     --button-bg-color: #C7B0E3;
     --button-text-color: black;
     --global-padding: 1rem;
+    --file-status-text-color: #EFD33F;
 }
 
 body {
@@ -32,3 +33,17 @@ button {
 .hex-view-container {}
 
 .ascii-view-container {}
+
+.file-status-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.status-filename {
+    color: var(--file-status-text-color);
+}
+
+.status-filesize {
+    color: var(--file-status-text-color);
+}
