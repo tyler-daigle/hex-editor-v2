@@ -7,7 +7,7 @@
 
 This is a hex editor made for the web. 
 
-You can see it in action [here](https://starlit-lollipop-799dae.netlify.app/). It is still
+You can see it in action [here](https://chipper-seahorse-3889b8.netlify.app/). It is still
 a work in progress and is missing a lot of features currently.
 
 It allows you to open a file on your computer and view its contents in a hex editor.
