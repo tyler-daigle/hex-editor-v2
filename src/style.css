@@ -40,7 +40,17 @@ button {
 
 .hex-view-table-cell {
     color: var(--hex-output-color);
+}
 
+.hex-view-table-cell:hover {
+    background-color: var(--hex-output-color);
+    color: var(--container-bg-color);
+    cursor: pointer;
+}
+
+.hex-row-label {
+    color: var(--hex-output-color);
+    filter: brightness(.35);
 }
 
 .ascii-view-container {}

@@ -1,4 +1,4 @@
-import { LoadedFile } from "./types";
+import { HexFileData, LoadedFile } from "./types";
 import { loadFile } from "./loadFile";
 import { setHexView } from "./hexView";
 import "./style.css";
@@ -25,13 +25,13 @@ import "./style.css";
 })();
 
 
-function fakeData(size: number = 500) {
+function fakeData(size: number = 500): HexFileData {
 	const nums = [];
 
 	for (let i = 0; i < size; i++) {
 		nums.push(Math.floor(Math.random() * 255));
 	}
-	return nums;
+	return { data: nums, startOffset: 0, endOffset: size };
 }
 
 async function selectedFileChanged(loadedFile: LoadedFile) {
@@ -49,8 +49,8 @@ async function selectedFileChanged(loadedFile: LoadedFile) {
 	console.log("Filesize: ", fileSize);
 
 	try {
-		currentSlice = await read(50, 500);
-		sliceChanged(currentSlice, hexDiv, asciiDiv);
+		const fileData = await read(50, 500);
+		sliceChanged(fileData, hexDiv, asciiDiv);
 	} catch (e) {
 		console.log(e);
 	}
@@ -63,12 +63,12 @@ function testData() {
 	sliceChanged(currentSlice, hexDiv, asciiDiv);
 }
 
-function sliceChanged(slice: number[], hexDiv: HTMLDivElement, asciiDiv: HTMLDivElement) {
+function sliceChanged(slice: HexFileData, hexDiv: HTMLDivElement, asciiDiv: HTMLDivElement) {
 	// TODO: make the slice a type that contains the data and the start and end offset.
 	console.log(slice);
 	const offsetDisplay = document.getElementById("offset-view")! as HTMLDivElement;
 
-	setOffsetDisplay(offsetDisplay, 0, 1500);
+	// setOffsetDisplay(offsetDisplay, 0, 1500);
 	setHexView(hexDiv, slice);
 	setAsciiView(asciiDiv, slice);
 }
@@ -101,9 +101,10 @@ function setOffsetDisplay(offsetDiv: HTMLDivElement, startOffset: number, endOff
 	offsetDiv.appendChild(ol);
 }
 
-function setAsciiView(asciiDiv: HTMLDivElement, data: number[]) {
+function setAsciiView(asciiDiv: HTMLDivElement, fileData: HexFileData) {
 
 	// bounds for the printable ASCII character values (in decimal)
+	const { data } = fileData;
 	const asciiStart = 32;
 	const asciiEnd = 126;
 

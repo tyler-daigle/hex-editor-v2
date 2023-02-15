@@ -1,11 +1,11 @@
-import { LoadedFile } from "./types";
+import { LoadedFile, HexFileData } from "./types";
 
 export function loadFile(selectedFile: File): LoadedFile {
     const fileName = selectedFile.name;
     const fileSize = selectedFile.size;
     let numBytesRead = 0;
 
-    const read = async (start: number, end: number): Promise<number[]> => {
+    const read = async (start: number, end: number): Promise<HexFileData> => {
         const slice = await selectedFile.slice(start, end).arrayBuffer();
         const data = new Uint8Array(slice);
         const numericValues: number[] = [];
@@ -16,8 +16,13 @@ export function loadFile(selectedFile: File): LoadedFile {
             numericValues.push(num);
         }
 
-        // TODO: this should return an object with the start and end offsets also
-        return numericValues;
+        // endOffset might not be exactly what was requested if we are near the
+        // end of the file.
+        return {
+            data: numericValues,
+            startOffset: start,
+            endOffset: start + data.length
+        };
     }
 
     const close = () => {
