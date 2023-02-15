@@ -15,6 +15,8 @@ export function loadFile(selectedFile: File): LoadedFile {
         for (let num of data) {
             numericValues.push(num);
         }
+
+        // TODO: this should return an object with the start and end offsets also
         return numericValues;
     }
 
