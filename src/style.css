@@ -32,7 +32,8 @@ button {
 
 .view-container {
     display: flex;
-    margin: var(--global-padding);
+    margin: var(--global-padding) 0;
+
     gap: 1rem;
 }
 
