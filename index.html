@@ -5,7 +5,10 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="styles/style.css"> -->
   <title>Hex Editor</title>
 </head>
 
@@ -16,8 +19,13 @@
   <input id="file-selector" type="file" />
 
   <div id="file-status-view"></div>
-  <div id="hex-view"></div>
-  <div id="ascii-view"></div>
+  <div id="hex-view" class="container hex-view-container">
+    <p class="info-text">Select a file to view.</p>
+  </div>
+
+  <div id="ascii-view" class="container ascii-view-container">
+    <p class="info-text">Select a file to view.</p>
+  </div>
 
   <script type="module" src="/src/main.ts"></script>
 </body>
