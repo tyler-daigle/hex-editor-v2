@@ -30,7 +30,18 @@ button {
     border: solid 1px var(--border-color);
 }
 
+.view-container {
+    display: flex;
+    margin: var(--global-padding);
+    gap: 1rem;
+}
+
 .hex-view-container {}
+
+.hex-view-table-cell {
+    color: var(--hex-output-color);
+
+}
 
 .ascii-view-container {}
 
@@ -47,3 +58,12 @@ button {
 .status-filesize {
     color: var(--file-status-text-color);
 }
+
+.offset-view {}
+
+.offset-view-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.offset-view-list-item {}
